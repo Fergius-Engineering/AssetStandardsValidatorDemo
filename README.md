@@ -69,6 +69,8 @@ Inspired by [Allar's UE5 Style Guide](https://github.com/Allar/ue5-style-guide).
 4. Click any result to select the asset in the Content Browser
 5. Click **Auto-fix** on a result (or right-click → Fix) to apply the fix
 
+![ASV Panel — validation results after a full audit](docs/screenshots/asv-panel-results.png)
+
 ---
 
 ## Batch Fix (full version)
@@ -84,7 +86,7 @@ Fix an entire filtered rule at once — no need to click through each asset indi
 6. Click **Fix Selected** — progress updates per row in real time
 7. When done, the panel refreshes and a summary toast appears
 
-<!-- screenshot placeholder: batch-fix-dialog.png -->
+![Batch Fix dialog — review assets and apply fixes in bulk](docs/screenshots/asv-batch-fix-dialog.png)
 
 > Demo allows up to 5 batch fix uses per editor session. The button shows remaining uses in the tooltip. Resets on editor restart.
 
@@ -202,6 +204,14 @@ Auto-fix: `stale_redirector` (consolidates the redirector).
 
 ---
 
+## Audit Report
+
+Export a full HTML report after any scan: **Export Report → HTML**. Opens in your browser — health score, top violations by impact, breakdown by folder.
+
+![HTML audit report — health score, violations by rule and folder](docs/screenshots/asv-html-report.png)
+
+---
+
 ## Configuration
 
 On first run the plugin creates a config DataAsset automatically: **`Content/Data/DA_ASV_AllarStyleGuide`**. Open it to enable or adjust checks — no setup required to get started.
@@ -237,6 +247,14 @@ For project-specific asset types (e.g. `GA_` for Gameplay Abilities, `GE_` for G
 4. Set **Prefix** to `GA_`
 
 For a simple class name → prefix mapping without inheritance, use **Default Class Prefixes** instead (a key/value map on the same validator).
+
+---
+
+## In-editor documentation
+
+Full reference is available inside the editor: **Tools → Asset Standards Validator → Documentation**. Works offline, searchable, covers all validators, auto-fix, configuration, and reports.
+
+![In-editor documentation — searchable reference, works offline](docs/screenshots/asv-docs-tab.png)
 
 ---
 
