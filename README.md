@@ -106,9 +106,11 @@ Checks asset names against the [Allar UE5 Style Guide](https://github.com/Allar/
 | `duplicate_prefix` | Asset name does not have the prefix repeated | ✅ | `bCheckPrefix` |
 | `missing_suffix` | Asset has required class suffix when defined | ✅ | `bCheckSuffix` |
 | `missing_allowed_suffix` | World assets use allowed level suffixes | ✅ | `bCheckAllowedSuffix` |
-| `name_pattern_mismatch` | Name matches the allowed pattern regex | ✅ | `bCheckNamePattern` |
-| `non_ascii_name` | No non-ASCII characters in name | ✅ | `bCheckNonAsciiName` |
-| `junk_name` | Name is not a placeholder (New, Temp, Default…) | ✅ | `bCheckJunkName` |
+| `name_pattern_mismatch` | Name matches the allowed pattern regex | ❌ | `bCheckNamePattern` |
+| `non_ascii_name` | No non-ASCII characters in name | ❌ | `bCheckNonAsciiName` |
+| `junk_name` | Name is not a placeholder (New, Temp, Default…) | ❌ | `bCheckJunkName` |
+
+`name_pattern_mismatch`, `non_ascii_name`, `junk_name` are off by default — too noisy on first run. Enable once your naming discipline is established.
 
 Auto-fix: `missing_prefix`, `duplicate_prefix`, `missing_suffix`, `missing_allowed_suffix`, `junk_name` (renames asset).
 
@@ -121,7 +123,7 @@ Checks that assets are in the right folders and paths are well-formed.
 | Rule ID | What it checks | On by default | Config property |
 |---------|---------------|:-------------:|----------------|
 | `wrong_folder` | Asset is in the correct folder for its class | ✅ | `bCheckWrongFolder` |
-| `folder_not_pascal_case` | Each folder segment uses PascalCase | ✅ | `bCheckPascalCase` |
+| `folder_not_pascal_case` | Each folder segment uses PascalCase | ❌ | `bCheckPascalCase` |
 | `folder_contains_unicode` | No non-ASCII characters in folder path | ✅ | `bCheckUnicode` |
 | `folder_disallowed_name` | No generic folder names (Assets, Meshes…) | ❌ | `bCheckDisallowedNames` |
 | `folder_in_developers` | Asset is not inside the Developers/ folder | ✅ | `bCheckDevelopersFolder` |
@@ -138,11 +140,13 @@ Checks texture properties from asset metadata — no full load required.
 
 | Rule ID | What it checks | On by default | Config property |
 |---------|---------------|:-------------:|----------------|
-| `texture_not_power_of_two` | Width and height are both powers of two | ✅ | `bCheckPowerOfTwo` |
+| `texture_not_power_of_two` | Width and height are both powers of two | ❌ | `bCheckPowerOfTwo` |
 | `texture_exceeds_max_size` | Width and height within max size (default 8192) | ✅ | `bCheckMaxSize` |
-| `texture_wrong_srgb` | sRGB flag matches texture type (color vs non-color) | ✅ | `bCheckSRGB` |
-| `texture_wrong_compression` | Compression matches texture type | ✅ | `bCheckCompression` |
-| `texture_wrong_group` | LOD group matches texture suffix | ✅ | `bCheckTextureGroup` |
+| `texture_wrong_srgb` | sRGB flag matches texture type (color vs non-color) | ❌ | `bCheckSRGB` |
+| `texture_wrong_compression` | Compression matches texture type | ❌ | `bCheckCompression` |
+| `texture_wrong_group` | LOD group matches texture suffix | ❌ | `bCheckTextureGroup` |
+
+Only `texture_exceeds_max_size` is on by default. POT, sRGB, compression, and group checks require consistent texture suffix conventions — enable when your naming discipline is in place.
 
 Detection is based on name suffix: `_D` → color (sRGB on), `_N` → normal (sRGB off), etc.
 
@@ -156,22 +160,22 @@ Checks Blueprint variable conventions and compilation status.
 
 | Rule ID | What it checks | On by default | Config property |
 |---------|---------------|:-------------:|----------------|
-| `bp_bool_no_prefix` | Boolean variables start with `b` | ✅ | `bCheckBoolPrefix` |
-| `bp_bool_is_pattern` | Avoid `bIsDead` — prefer `bDead` | ✅ | `bCheckBoolIsPattern` |
-| `bp_var_not_pascal_case` | Variable uses PascalCase | ✅ | `bCheckPascalCase` |
-| `bp_var_atomic_type_name` | Name does not include type (`Score` not `ScoreInt`) | ✅ | `bCheckAtomicTypeName` |
-| `bp_editable_missing_tooltip` | Editable variables have tooltip text | ✅ | `bCheckEditableTooltips` |
-| `bp_var_config_flag` | Variable does not use the Config flag | ✅ | `bCheckConfigFlag` |
-| `bp_editable_missing_range` | Editable numeric variables have a range set | ✅ | `bCheckEditableRanges` |
-| `bp_vars_uncategorized` | Editable variables are categorized (when ≥ 5) | ✅ | `bCheckUncategorizedVars` |
-| `bp_var_redundant_context` | Variable name doesn't repeat the class name | ✅ | `bCheckRedundantContext` |
+| `bp_bool_no_prefix` | Boolean variables start with `b` | ❌ | `bCheckBoolPrefix` |
+| `bp_bool_is_pattern` | Avoid `bIsDead` — prefer `bDead` | ❌ | `bCheckBoolIsPattern` |
+| `bp_var_not_pascal_case` | Variable uses PascalCase | ❌ | `bCheckPascalCase` |
+| `bp_var_atomic_type_name` | Name does not include type (`Score` not `ScoreInt`) | ❌ | `bCheckAtomicTypeName` |
+| `bp_editable_missing_tooltip` | Editable variables have tooltip text | ❌ | `bCheckEditableTooltips` |
+| `bp_var_config_flag` | Variable does not use the Config flag | ❌ | `bCheckConfigFlag` |
+| `bp_editable_missing_range` | Editable numeric variables have a range set | ❌ | `bCheckEditableRanges` |
+| `bp_vars_uncategorized` | Editable variables are categorized (when ≥ 5) | ❌ | `bCheckUncategorizedVars` |
+| `bp_var_redundant_context` | Variable name doesn't repeat the class name | ❌ | `bCheckRedundantContext` |
 | `var_array_not_plural` | Array variables use plural names | ❌ | `bCheckArrayPlural` |
 | `var_missing_type_name` | Struct/object variables include type name | ❌ | `bCheckComplexTypeName` |
 | `blueprint_compile_error` | Blueprint has no compilation errors | ✅ | `bCheckCompilation` |
 | `blueprint_compile_warning` | Blueprint has no compilation warnings | ✅ | `bCheckCompilation` |
 | `blueprint_needs_compile` | Blueprint is up to date (not dirty) | ✅ | `bCheckCompilation` |
 
-`var_array_not_plural` and `var_missing_type_name` are off by default — they produce many false positives without project-specific tuning.
+All variable checks are off by default — they fire heavily on legacy projects. Enable progressively once your team adopts Blueprint naming conventions.
 
 Auto-fix: `bp_bool_no_prefix` (renames to add `b`), `bp_bool_is_pattern` (renames, removes `Is`/`Has`/`Can`), `bp_var_not_pascal_case` (renames to PascalCase).
 
@@ -183,11 +187,11 @@ Checks mesh quality settings. Requires loading the UStaticMesh asset.
 
 | Rule ID | What it checks | On by default | Config property |
 |---------|---------------|:-------------:|----------------|
-| `mesh_no_collision` | Mesh has collision geometry | ✅ | `bCheckCollision` |
-| `mesh_no_lods` | Mesh has LODs (for meshes over 5 000 triangles) | ✅ | `bCheckLODs` |
+| `mesh_no_collision` | Mesh has collision geometry | ❌ | `bCheckCollision` |
+| `mesh_no_lods` | Mesh has LODs (for meshes over 5 000 triangles) | ❌ | `bCheckLODs` |
 | `mesh_nanite_policy` | Nanite is enabled/disabled as required | ❌ | `bCheckNanite` |
 
-`mesh_nanite_policy` is off by default — the policy (must enable / must disable / allow any) needs a project decision.
+All mesh checks are off by default — collision/LOD/Nanite strategies vary significantly per studio. Enable when you have a consistent project standard.
 
 Auto-fix: `mesh_nanite_policy` (enables or disables Nanite per policy). Collision and LOD changes are manual.
 
