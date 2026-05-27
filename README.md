@@ -122,7 +122,6 @@ Checks that assets are in the right folders and paths are well-formed.
 |---------|---------------|:-------------:|----------------|
 | `wrong_folder` | Asset is in the correct folder for its class | ✅ | `bCheckWrongFolder` |
 | `folder_not_pascal_case` | Each folder segment uses PascalCase | ✅ | `bCheckPascalCase` |
-| `folder_contains_spaces` | No spaces in folder path | ✅ | `bCheckSpaces` |
 | `folder_contains_unicode` | No non-ASCII characters in folder path | ✅ | `bCheckUnicode` |
 | `folder_disallowed_name` | No generic folder names (Assets, Meshes…) | ❌ | `bCheckDisallowedNames` |
 | `folder_in_developers` | Asset is not inside the Developers/ folder | ✅ | `bCheckDevelopersFolder` |
