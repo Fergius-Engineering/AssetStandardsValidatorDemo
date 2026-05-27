@@ -274,6 +274,6 @@ Full version includes source code, packaging support, and the ability to write c
 
 ## Bugs and questions
 
-[Open an issue on GitHub →](https://github.com/FergiusEngineering/AssetStandardsValidator/issues)
+[Join Discord →](https://discord.gg/Zc7Y7nYrvz)
 
 Please include your UE version and a brief description of what happened.
