@@ -204,11 +204,39 @@ Auto-fix: `stale_redirector` (consolidates the redirector).
 
 ## Configuration
 
-All validators are configured via a **UASVCheckerConfig DataAsset**. Create one in your project, add validators and triggers to it, and set it in the plugin settings.
+On first run the plugin creates a config DataAsset automatically: **`Content/Data/DA_ASV_AllarStyleGuide`**. Open it to enable or adjust checks — no setup required to get started.
 
-**Project Settings → Plugins → Asset Standards Validator → Checker Config Asset**
+**Project Settings → Plugins → Asset Standards Validator** — global settings: scan roots, exclude paths, logging.
 
-Default settings work without any configuration — the plugin scans your whole project on demand.
+### Enabling off-by-default rules
+
+Rules marked ❌ in the tables above are off in the auto-created config. To enable one:
+
+1. Open `Content/Data/DA_ASV_AllarStyleGuide` in the Content Browser
+2. Expand the relevant validator in the **Validators** list
+3. Toggle the property on
+
+**Example — `mesh_nanite_policy`:**
+1. Expand **ASVValidator_Mesh**
+2. Set `bCheckNanite = true`
+3. Set `NanitePolicy` to `MustEnable`, `MustDisable`, or `AllowAny`
+4. Optionally adjust `MinTriCountForNanite` (default 10 000)
+
+**Example — `folder_disallowed_name`:**
+1. Expand **ASVValidator_FolderStructure**
+2. Set `bCheckDisallowedNames = true`
+3. Add folder names to `DisallowedFolderNames` (e.g. `Assets`, `Meshes`)
+
+### Custom class prefixes
+
+For project-specific asset types (e.g. `GA_` for Gameplay Abilities, `GE_` for Gameplay Effects):
+
+1. Open `Content/Data/DA_ASV_AllarStyleGuide`
+2. Expand **ASVValidator_NamingConvention** → under **Class Rules**, click **+**
+3. Set **Class Picker** to the parent class (e.g. `UGameplayAbility`) — Blueprint subclasses match automatically
+4. Set **Prefix** to `GA_`
+
+For a simple class name → prefix mapping without inheritance, use **Default Class Prefixes** instead (a key/value map on the same validator).
 
 ---
 
