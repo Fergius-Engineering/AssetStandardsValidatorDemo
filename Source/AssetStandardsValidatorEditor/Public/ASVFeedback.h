@@ -11,8 +11,7 @@ public:
     static bool ShouldShow();
     static void MarkShown();
     static FString GetFormUrl();
-    static void OpenUrl();   // opens browser directly, no dialog
-    static void ShowPopup(); // dialog with thank-you + don't-ask-again (used on editor close)
+    static void OpenUrl(); // opens browser directly, no dialog
 
     // first-run flag (opens index.html on first editor launch in demo)
     static bool HasSeenWelcome();
