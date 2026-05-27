@@ -30,7 +30,7 @@ Inspired by [Allar's UE5 Style Guide](https://github.com/Allar/ue5-style-guide).
 
 ## What's included
 
-- **Naming Convention** — prefix, suffix, spaces, junk names, non-ASCII
+- **Naming Convention** — prefix, suffix, junk names, non-ASCII
 - **Folder Structure** — wrong location, bad path format, Developers/ check
 - **Texture** — power-of-two, max size, sRGB, compression, LOD group
 - **Blueprint** — variable naming, bool prefix, tooltips, compilation errors
