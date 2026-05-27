@@ -71,6 +71,8 @@ Inspired by [Allar's UE5 Style Guide](https://github.com/Allar/ue5-style-guide).
 
 ![ASV Panel — validation results after a full audit](docs/screenshots/asv-panel-results.png)
 
+![Asset overlay — violation badges visible directly in the Content Browser](docs/screenshots/asv-asset-overlay.png)
+
 ---
 
 ## Batch Fix (full version)
@@ -217,6 +219,8 @@ Export a full HTML report after any scan: **Export Report → HTML**. Opens in y
 On first run the plugin creates a config DataAsset automatically: **`Content/Data/DA_ASV_AllarStyleGuide`**. Open it to enable or adjust checks — no setup required to get started.
 
 **Project Settings → Plugins → Asset Standards Validator** — global settings: scan roots, exclude paths, logging.
+
+![Checker config DataAsset — validators, triggers, and path filters](docs/screenshots/asv-checker-config.png)
 
 ### Enabling off-by-default rules
 
