@@ -231,12 +231,15 @@ Full reference is available inside the editor: **Tools → Asset Standards Valid
 | Feature | Demo | Full |
 |---------|------|------|
 | All validators | ✅ | ✅ |
-| All triggers | ✅ | ✅ |
 | Auto-fix (single asset) | ✅ | ✅ |
-| Report export (HTML/JSON/CSV) | ✅ | ✅ |
+| Report export HTML | ✅ | ✅ |
 | In-editor docs | ✅ | ✅ |
+| OnSave / OnAssetCreated / OnAssetRenamed triggers | ✅ | ✅ |
+| OnPIE trigger | ✅ | ✅ |
 | Batch fix | ⚠️ 5 uses/session | ✅ Unlimited |
 | Batch scan | ⚠️ 200 assets/run | ✅ Unlimited |
+| Report export JSON / CSV | ❌ | ✅ |
+| OnStartup trigger | ❌ | ✅ |
 | CI commandlet | ❌ | ✅ |
 | Custom validators (C++/BP) | ❌ | ✅ |
 | Source code | ❌ | ✅ |
@@ -248,6 +251,8 @@ Full reference is available inside the editor: **Tools → Asset Standards Valid
 
 - **Scans up to 200 assets per run** — the most recently modified assets in scope. A pre-scan toast tells you when the cap is applied. Single-asset validation (right-click → Validate) has no cap.
 - **Batch Fix is limited to 5 uses per editor session** — resets on restart. Fixing one asset at a time is unlimited.
+- **Report export is HTML only** — JSON and CSV export require the full version.
+- **On Editor Startup trigger is disabled** — appears in config but cannot be enabled. Use OnSave or validate manually instead.
 - **CI commandlet is disabled** — `ASVCommandlet` exits with an error in demo builds.
 - **No source code** — custom validators (C++/Blueprint) require the full version.
 - **Windows only** — full version supports Windows, Linux, and Mac.
