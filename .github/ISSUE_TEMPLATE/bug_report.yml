@@ -1,0 +1,89 @@
+name: 🐛 Bug report
+description: Something in the demo is broken or behaves unexpectedly
+labels: [bug, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. The more detail you give, the faster it gets fixed.
+        Logs, screenshots and video are all optional — share whatever is easy for you.
+
+        **Before you file:** some things are intentional demo limits, not bugs —
+        the 200-asset scan cap, 5 auto-fixes per session, HTML-only export, the
+        disabled CI commandlet, Windows-only, and no source code. See
+        [Demo limitations](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo#demo-limitations).
+
+  - type: dropdown
+    id: ue-version
+    attributes:
+      label: Unreal Engine version
+      options:
+        - "5.0"
+        - "5.1"
+        - "5.2"
+        - "5.3"
+        - "5.4"
+        - "5.5"
+        - "5.6"
+        - "5.7"
+    validations:
+      required: true
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin (demo) version
+      description: Shown in the zip name, e.g. v0.4.0
+      placeholder: v0.4.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong? Steps to reproduce if you can.
+      placeholder: |
+        1. Open ASV Panel
+        2. Click Run Full Audit
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+      description: What did you expect to happen instead?
+    validations:
+      required: false
+
+  - type: textarea
+    id: log
+    attributes:
+      label: 📄 Log file (optional)
+      description: |
+        First enable verbose logs:
+        **Project Settings → Plugins → Asset Standards Validator → Output → Verbose Logging**.
+        Reproduce the bug, then drag in your log file from
+        `<YourProject>/Saved/Logs/<YourProject>.log`.
+      placeholder: Drag the .log file here, or paste the relevant lines.
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 🖼️ Screenshot (optional)
+      description: Drag an image into this box to attach it.
+    validations:
+      required: false
+
+  - type: input
+    id: video
+    attributes:
+      label: 🎬 Video link (optional)
+      description: YouTube, Google Drive, Streamable — anything we can open.
+      placeholder: https://...
+    validations:
+      required: false
