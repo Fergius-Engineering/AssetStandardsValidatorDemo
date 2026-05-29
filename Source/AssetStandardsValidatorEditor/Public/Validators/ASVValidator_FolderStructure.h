@@ -37,14 +37,6 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Folders|Pascal Case", meta = (EditCondition = "bCheckPascalCase"))
     EASVPriority PascalCasePriority = EASVPriority::P1;
 
-    /** Verify that folder names do not contain spaces. Spaces in folder paths can break command-line tools and some pipeline integrations. */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Folders|Spaces")
-    bool bCheckSpaces = false;
-
-    /** Severity reported when a folder name contains a space character. */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Folders|Spaces", meta = (EditCondition = "bCheckSpaces"))
-    EASVPriority SpacesPriority = EASVPriority::P0;
-
     /** Verify that folder names use only ASCII characters. Non-ASCII folder names can cause issues on certain operating systems and source control systems. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Folders|Unicode")
     bool bCheckUnicode = false;
@@ -80,7 +72,7 @@ public:
     virtual FText GetDisplayName_Implementation() const override;
     virtual TArray<FName> GetRuleIDs() const override
     {
-        return { "wrong_folder", "folder_contains_spaces", "folder_contains_unicode",
+        return { "wrong_folder", "folder_contains_unicode",
                  "folder_not_pascal_case", "folder_disallowed_name", "folder_in_developers" };
     }
 

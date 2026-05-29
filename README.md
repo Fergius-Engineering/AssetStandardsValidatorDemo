@@ -51,8 +51,9 @@ Six validator categories, all configurable. Most rules are off by default on fir
 | `name_pattern_mismatch` | Name matches the allowed pattern regex | ❌ |
 | `non_ascii_name` | No non-ASCII characters in name | ❌ |
 | `junk_name` | Name is not a placeholder (New, Temp, Default…) | ❌ |
+| `wrong_case` | Name segment starts with a lowercase letter | ❌ |
 
-Auto-fix: `missing_prefix`, `duplicate_prefix`, `missing_suffix`, `missing_allowed_suffix`, `junk_name`.
+Auto-fix: `missing_prefix`, `duplicate_prefix`, `missing_suffix`, `missing_allowed_suffix`, `junk_name`, `wrong_case`.
 
 ### Folder Structure
 
@@ -98,8 +99,6 @@ Auto-fix: `texture_wrong_srgb`, `texture_wrong_compression`, `texture_wrong_grou
 | `var_array_not_plural` | Array variables use plural names | ❌ |
 | `var_missing_type_name` | Struct/object variables include type name | ❌ |
 | `blueprint_compile_error` | Blueprint has no compilation errors | ✅ |
-| `blueprint_compile_warning` | Blueprint has no compilation warnings | ✅ |
-| `blueprint_needs_compile` | Blueprint is up to date (not dirty) | ✅ |
 
 Auto-fix: `bp_bool_no_prefix`, `bp_bool_is_pattern`, `bp_var_not_pascal_case`.
 
@@ -166,13 +165,13 @@ Fix an entire filtered rule at once — no need to click through each asset indi
 
 ![Batch Fix dialog — review assets, edit proposed names, apply fixes in bulk](docs/screenshots/asv-batch-fix-dialog.png)
 
-> Demo allows up to 5 batch fix uses per editor session. The button shows remaining uses in the tooltip. Resets on editor restart.
+> Demo allows up to **5 auto-fixes per editor session** — both single-asset fixes and batch fixes count toward the limit. The button tooltip shows remaining uses. Resets on editor restart.
 
 ---
 
 ## Audit Report
 
-Export a full report after any scan: **Export Report → HTML / JSON / CSV**.
+Export a full report after any scan: **Export Report → HTML** (demo) or **HTML / JSON / CSV** (full version).
 
 The HTML report opens in your browser — health score, top violations by impact, breakdown by folder and rule.
 
@@ -249,8 +248,10 @@ Full reference is available inside the editor: **Tools → Asset Standards Valid
 
 ## ⚠️ Demo limitations
 
+On first scan, a dialog appears explaining the active restrictions — you'll see it once per editor session.
+
 - **Scans up to 200 assets per run** — the most recently modified assets in scope. A pre-scan toast tells you when the cap is applied. Single-asset validation (right-click → Validate) has no cap.
-- **Batch Fix is limited to 5 uses per editor session** — resets on restart. Fixing one asset at a time is unlimited.
+- **Auto-fix is limited to 5 uses per editor session** — both single-asset and batch fixes count. Resets on editor restart.
 - **Report export is HTML only** — JSON and CSV export require the full version.
 - **On Editor Startup trigger is disabled** — appears in config but cannot be enabled. Use OnSave or validate manually instead.
 - **CI commandlet is disabled** — `ASVCommandlet` exits with an error in demo builds.

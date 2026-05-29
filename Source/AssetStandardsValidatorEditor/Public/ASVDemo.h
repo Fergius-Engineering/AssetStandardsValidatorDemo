@@ -10,17 +10,23 @@ class FASVDemoSession
 {
 public:
     static constexpr int32 AssetLimit = 200;
-    static constexpr int32 BatchFixSessionLimit = 5;
+    static constexpr int32 FixSessionLimit = 5;
 
     static FString GetFabUrl();
 
-    // batch fix session counter (in-memory, resets on editor restart)
-    static bool CanBatchFix();
-    static void RecordBatchFix();
-    static int32 GetBatchFixCount() { return BatchFixCount; }
+    // unified fix counter — counts every auto-fix (single or batch) per editor session
+    static bool CanFix();
+    static void RecordFix();
+    static int32 GetFixCount() { return FixCount; }
+
+    // shows modal notice once per session before any manual scan
+    static void ShowScanNoticeOnce();
+    // shows modal notice every time — for panel button
+    static void ShowScanNotice();
 
 private:
-    static int32 BatchFixCount;
+    static int32 FixCount;
+    static bool bScanNoticeShown;
 };
 
 #endif // ASV_DEMO

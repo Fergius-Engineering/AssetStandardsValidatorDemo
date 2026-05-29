@@ -20,6 +20,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Trigger", meta = (ClampMin = "0.0"))
 	float DelaySeconds = 0.5f;
 
+#ifdef ASV_DEMO
+	virtual bool CanEditChange(const FProperty* InProperty) const override;
+#endif
+
 	virtual void Activate_Implementation() override;
 	virtual void Deactivate_Implementation() override;
 	virtual FText GetDisplayName_Implementation() const override;

@@ -168,6 +168,8 @@ private:
 
     bool bGroupByAsset = false;
 
+    bool bIsScanning = false;
+
     // cached per RefreshFilteredList — avoids per-frame allocation from Slate attribute polls
     bool bCanBatchFix = false;
     FText CachedBatchFixTooltip;

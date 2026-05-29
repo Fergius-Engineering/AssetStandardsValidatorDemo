@@ -10,38 +10,29 @@
 
 namespace ASV_ClassUtils
 {
-	/**
-	 * Try to resolve the parent class path of an asset (Blueprints included) without loading;
-	 * falls back to loading GeneratedClass if needed.
-	 * Returns true and fills OutParentClassPath (e.g. "/Script/Engine.Actor") on success.
-	 */
+	// resolve parent class path without loading; falls back to loading GeneratedClass if needed
 	static bool TryGetParentClassPath(const FAssetData& AD, FString& OutParentClassPath)
 	{
-		// Fast paths: rely on AssetRegistry tags first (no loading).
 		FString Str;
-
-		// Modern tag used by BP assets
 		if (AD.GetTagValue(FName(TEXT("ParentClassPath")), Str) && !Str.IsEmpty())
 		{
 			OutParentClassPath = Str;
 			return true;
 		}
 
-		// Older tag sometimes present on BPs (direct parent — more specific than native ancestor)
 		if (AD.GetTagValue(FName(TEXT("ParentClass")), Str) && !Str.IsEmpty())
 		{
 			OutParentClassPath = Str;
 			return true;
 		}
 
-		// Native ancestor fallback (less specific, used only when direct parent tag absent)
 		if (AD.GetTagValue(FName(TEXT("NativeParentClassPath")), Str) && !Str.IsEmpty())
 		{
 			OutParentClassPath = Str;
 			return true;
 		}
 
-		// Fallback: only "GeneratedClass" is present -> we may need to load to get SuperClass.
+		// workaround: GeneratedClass present — must load to get SuperClass
 		if (AD.GetTagValue(FName(TEXT("GeneratedClass")), Str) && !Str.IsEmpty())
 		{
 			const FSoftClassPath GeneratedClassPath(Str);
