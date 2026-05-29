@@ -256,7 +256,7 @@ On first scan, a dialog appears explaining the active restrictions — you'll se
 - **On Editor Startup trigger is disabled** — appears in config but cannot be enabled. Use OnSave or validate manually instead.
 - **CI commandlet is limited** — `ASVCommandlet` runs in demo builds but scans the 200 most-recently-modified assets per run. Exit codes are identical to the full version.
 - **No source code** — custom validators (C++/Blueprint) require the full version.
-- **Windows only** — full version supports Windows, Linux, and Mac.
+- **Windows only** — the full version adds Mac and Linux (built from source; details in the full version's README).
 
 ---
 
