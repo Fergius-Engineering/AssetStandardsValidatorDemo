@@ -14,6 +14,16 @@ body:
         [Demo limitations](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo#demo-limitations).
 
   - type: dropdown
+    id: edition
+    attributes:
+      label: Which version are you using?
+      options:
+        - "Demo"
+        - "Full version"
+    validations:
+      required: true
+
+  - type: dropdown
     id: ue-version
     attributes:
       label: Unreal Engine version
@@ -32,9 +42,9 @@ body:
   - type: input
     id: plugin-version
     attributes:
-      label: Plugin (demo) version
-      description: Shown in the zip name, e.g. v0.4.0
-      placeholder: v0.4.0
+      label: Plugin version
+      description: Open the plugin's `AssetStandardsValidator.uplugin` file and copy the `VersionName` value (e.g. 0.4.0). It also appears in the demo zip name.
+      placeholder: "0.4.0"
     validations:
       required: true
 
