@@ -9,8 +9,8 @@ body:
         Logs, screenshots and video are all optional — share whatever is easy for you.
 
         **Before you file:** some things are intentional demo limits, not bugs —
-        the 200-asset scan cap, 5 auto-fixes per session, HTML-only export, the
-        disabled CI commandlet, Windows-only, and no source code. See
+        the 200-asset scan cap (panel and CI commandlet), 5 auto-fixes per session,
+        HTML-only export, Windows-only, and no source code. See
         [Demo limitations](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo#demo-limitations).
 
   - type: dropdown
