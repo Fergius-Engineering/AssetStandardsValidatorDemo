@@ -179,9 +179,9 @@ The HTML report opens in your browser — health score, top violations by impact
 
 ---
 
-## CI Integration *(full version)*
+## CI Integration
 
-The full version includes a commandlet for unattended validation in CI pipelines.
+Available in demo and full versions. The demo validates the 200 most-recently-modified assets per run.
 
 ```
 UnrealEditor-Cmd.exe MyProject.uproject -run=ASVCommandlet \
@@ -199,7 +199,7 @@ UnrealEditor-Cmd.exe MyProject.uproject -run=ASVCommandlet \
 
 JSON output includes per-rule counts and asset paths — plug directly into CI dashboards or PR gates.
 
-> The commandlet is disabled in the demo and exits with an error.
+> **Demo:** scans the 200 most-recently-modified assets. A log line confirms the cap when applied. Exit codes are identical to the full version.
 
 ---
 
@@ -239,14 +239,14 @@ Full reference is available inside the editor: **Tools → Asset Standards Valid
 | Batch scan | ⚠️ 200 assets/run | ✅ Unlimited |
 | Report export JSON / CSV | ❌ | ✅ |
 | OnStartup trigger | ❌ | ✅ |
-| CI commandlet | ❌ | ✅ |
+| CI commandlet | ⚠️ 200 assets/run | ✅ Unlimited |
 | Custom validators (C++/BP) | ❌ | ✅ |
 | Source code | ❌ | ✅ |
 | Platforms | Windows only | Windows · Linux · Mac |
 
 ---
 
-## ⚠️ Demo limitations
+## Demo limitations
 
 On first scan, a dialog appears explaining the active restrictions — you'll see it once per editor session.
 
@@ -254,7 +254,7 @@ On first scan, a dialog appears explaining the active restrictions — you'll se
 - **Auto-fix is limited to 5 uses per editor session** — both single-asset and batch fixes count. Resets on editor restart.
 - **Report export is HTML only** — JSON and CSV export require the full version.
 - **On Editor Startup trigger is disabled** — appears in config but cannot be enabled. Use OnSave or validate manually instead.
-- **CI commandlet is disabled** — `ASVCommandlet` exits with an error in demo builds.
+- **CI commandlet is limited** — `ASVCommandlet` runs in demo builds but scans the 200 most-recently-modified assets per run. Exit codes are identical to the full version.
 - **No source code** — custom validators (C++/Blueprint) require the full version.
 - **Windows only** — full version supports Windows, Linux, and Mac.
 
