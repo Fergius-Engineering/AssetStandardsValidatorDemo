@@ -1,14 +1,48 @@
 # Asset Standards Validator — Demo
 
-Validates and enforces asset naming, folder structure, and quality standards inside Unreal Engine 5. Catches bad assets before they reach the project or the pipeline.
+**More than a linter — a standards layer for your whole UE5 project.**
 
-Inspired by [Allar's UE5 Style Guide](https://github.com/Allar/ue5-style-guide).
+A linter tells you an asset name is wrong. ASV shows you that right inside the Content Browser, sorts it by priority, fixes it in bulk, and hands your lead a report on how clean the project is. Configured per studio, enforced everywhere.
+
+[![Download Demo](https://img.shields.io/badge/Download%20Demo-Releases-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases)
+[![Get Full on Fab](https://img.shields.io/badge/Get%20Full%20on-Fab-1a73e8?style=for-the-badge)](https://www.fab.com/sellers/Fergius%20Engineering)
+[![UE 5.0–5.7](https://img.shields.io/badge/UE-5.0%E2%80%935.7-313131?style=for-the-badge&logo=unrealengine&logoColor=white)](#install)
+
+> **⬇ Where to download:** open the [**Releases**](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) page and grab `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version. Full install steps are [below](#install).
+
+![Content Browser — violation badges on folders and assets, filters on the left, no panel required](docs/screenshots/asv-filter-c.png)
+
+- **Fixes in bulk, not just flags** — auto-fix hundreds of assets in one pass, with a per-row review before anything is applied.
+- **Lives in your Content Browser** — violation badges and filters right where you work, not in a separate console.
+- **Hands your lead a project-health report** — exportable HTML audit with a health score and top issues.
 
 ---
 
-![ASV Panel — validation results after a full audit](docs/screenshots/asv-panel-results.png)
+## More than a linter
 
-![Asset overlay — violation badges visible directly in the Content Browser](docs/screenshots/asv-asset-overlay.png)
+| Ordinary linter | Asset Standards Validator |
+|-----------------|---------------------------|
+| One fixed rule set | Configured per studio and per project |
+| A flat list of errors | Sorted by priority P0–P3 and by rule |
+| Fix by hand, one at a time | Batch auto-fix of hundreds of assets |
+| Name checks only | Custom validators in C++ or Blueprint *(full version)* |
+| Console output | HTML project-health report for the lead |
+
+---
+
+## Two ways to work: panel or Content Browser
+
+You don't have to live in the ASV panel. Every violation is visible — and fixable — right in the Content Browser.
+
+- **Badges on assets and folders** — a marker appears on any asset that fails a check, and on every folder that contains one. Hover an asset to see the exact violations and their severity.
+- **Native filter dropdown** — open the Content Browser filter menu and you'll find an **Asset Standards Validator** section: filter by severity (P0–P3), by "Has Any Error", or by a specific rule. Narrow thousands of assets down to just the broken ones in two clicks.
+- **Right-click → Validate / Fix** — validate or auto-fix a single asset, or a whole folder, straight from the context menu.
+
+The panel gives you the full sortable list, batch fixes, and reports. The Content Browser gives you the same violations inline, while you work. Use whichever fits the moment.
+
+![Content Browser filter dropdown — the Asset Standards Validator section with severity and per-rule filters](docs/screenshots/asv-filters-b.png)
+
+![Asset overlay — hover an asset to see its violations and severity inline](docs/screenshots/asv-asset-overlay.png)
 
 ---
 
@@ -230,6 +264,7 @@ Full reference is available inside the editor: **Tools → Asset Standards Valid
 | Feature | Demo | Full |
 |---------|------|------|
 | All validators | ✅ | ✅ |
+| Content Browser badges + filters | ✅ | ✅ |
 | Auto-fix (single asset) | ✅ | ✅ |
 | Report export HTML | ✅ | ✅ |
 | In-editor docs | ✅ | ✅ |
