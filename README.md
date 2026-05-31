@@ -330,3 +330,5 @@ Full version includes unlimited scanning, CI integration, source code, and the a
 [Open an issue →](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/issues)
 
 Please include your UE version and a brief description of what happened.
+
+Prefer to chat? Join the community on [**Discord**](https://discord.gg/Zc7Y7nYrvz) for help, questions, and updates.
