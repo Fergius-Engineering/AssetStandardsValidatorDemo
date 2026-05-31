@@ -259,6 +259,14 @@ Full reference is available inside the editor: **Tools → Asset Standards Valid
 
 ---
 
+## Is the demo enough?
+
+If the limits work for you — use it free, no time limit. Good luck keeping your project clean.
+
+For larger projects, production pipelines, and serious studio work, grab the full version.
+
+---
+
 ## Demo vs Full
 
 | Feature | Demo | Full |
