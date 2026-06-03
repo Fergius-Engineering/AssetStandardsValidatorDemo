@@ -10,7 +10,7 @@ A linter tells you an asset name is wrong. ASV shows you that right inside the C
 
 > **⬇ Where to download:** open the [**Releases**](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) page and grab `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version. Full install steps are [below](#install).
 
-![Content Browser — violation badges on folders and assets, filters on the left, no panel required](docs/screenshots/asv-filter-c.png)
+![Content Browser with violation badges on folders and assets, and a hover tooltip listing an asset's violations by severity](docs/screenshots/asv-asset-overlay.png)
 
 - **Fixes in bulk, not just flags** — auto-fix hundreds of assets in one pass, with a per-row review before anything is applied.
 - **Lives in your Content Browser** — violation badges and filters right where you work, not in a separate console.
@@ -40,9 +40,9 @@ You don't have to live in the ASV panel. Every violation is visible — and fixa
 
 The panel gives you the full sortable list, batch fixes, and reports. The Content Browser gives you the same violations inline, while you work. Use whichever fits the moment.
 
-![Content Browser filter dropdown — the Asset Standards Validator section with severity and per-rule filters](docs/screenshots/asv-filters-b.png)
+![Content Browser filter dropdown — the Asset Standards Validator section, filter by severity or by a specific rule](docs/screenshots/asv-cb-filter-rule.png)
 
-![Asset overlay — hover an asset to see its violations and severity inline](docs/screenshots/asv-asset-overlay.png)
+![The Standards Validator panel — full sortable violation list, batch fixes, and reports](docs/screenshots/asv-panel-full.png)
 
 ---
 
