@@ -133,6 +133,7 @@ Auto-fix: `texture_wrong_srgb`, `texture_wrong_compression`, `texture_wrong_grou
 | `var_array_not_plural` | Array variables use plural names | ❌ |
 | `var_missing_type_name` | Struct/object variables include type name | ❌ |
 | `blueprint_compile_error` | Blueprint has no compilation errors | ✅ |
+| `blueprint_compile_warning` | Blueprint compiles with no warnings (deprecated nodes etc.) | ❌ |
 
 Auto-fix: `bp_bool_no_prefix`, `bp_bool_is_pattern`, `bp_var_not_pascal_case`.
 
