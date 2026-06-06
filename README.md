@@ -186,21 +186,13 @@ Overlay badges in the Content Browser update as violations are detected — no p
 
 ## Batch Fix
 
-Fix an entire filtered rule at once — no need to click through each asset individually.
+Fix a whole rule at once instead of clicking each asset.
 
-**Flow:**
-1. Run a full audit and wait for results
-2. Use the **Rule** filter dropdown to narrow results to a single rule (e.g. `missing_prefix`)
-3. The **Fix All** button in the toolbar activates when 2–200 fixable results are visible
-4. Click **Fix All** — a dialog opens showing all assets grouped by folder
-5. Each row shows the current name and the **proposed name after fix** — edit the proposed name inline if needed
-6. Conflicting assets (two assets that would get the same name, or a target path already occupied) are flagged ⚠ before anything is applied
-7. Uncheck any assets you want to skip, then click **Fix Selected** — progress updates per row in real time
-8. When done, the panel refreshes and a summary toast appears
+Narrow the panel to one rule with the **Rule** filter, then click **Fix All** (it activates once two or more fixable results are showing). A dialog lists every affected asset, grouped by folder, with its current and proposed name. Edit a proposed name inline, uncheck anything you want to skip, and apply. Conflicts — two assets that would collide, or a target path already taken — are flagged before anything runs. Progress shows per row, and the panel refreshes when it's done.
 
 ![Batch Fix dialog — review assets, edit proposed names, apply fixes in bulk](docs/screenshots/asv-batch-fix-dialog.png)
 
-> Demo allows up to **5 auto-fixes per editor session** — both single-asset fixes and batch fixes count toward the limit. The button tooltip shows remaining uses. Resets on editor restart.
+> Demo: 5 auto-fixes per editor session, single or batch. Resets on restart.
 
 ---
 
@@ -216,7 +208,7 @@ The HTML report opens in your browser — health score, top violations by impact
 
 ## CI Integration
 
-Available in demo and full versions. The demo validates the 200 most-recently-modified assets per run.
+Run validation from the command line, in demo and full versions alike. The demo scans the 200 most-recently-modified assets per run; exit codes are the same in both.
 
 ```
 UnrealEditor-Cmd.exe MyProject.uproject -run=ASVCommandlet \
@@ -226,15 +218,11 @@ UnrealEditor-Cmd.exe MyProject.uproject -run=ASVCommandlet \
   -output=./reports/
 ```
 
-**Exit codes:** `0` = no violations at the specified severity, `1` = violations found, `2` = report write error.
+- **Exit codes:** `0` clean, `1` violations found, `2` report write error.
+- **Severity:** `-severity P0` (default) fails on critical only; `P1` includes warnings. P0–P3 available.
+- **Scope:** `-Root` takes comma-separated content paths; `-MaxAssets` caps the scan.
 
-**Severity threshold:** `-severity P0` (default) fails only on critical issues; `-severity P1` fails on warnings too. P0–P3 available.
-
-**Scoping:** `-Root` accepts comma-separated content paths; `-MaxAssets` caps the scan for incremental runs.
-
-JSON output includes per-rule counts and asset paths — plug directly into CI dashboards or PR gates.
-
-> **Demo:** scans the 200 most-recently-modified assets. A log line confirms the cap when applied. Exit codes are identical to the full version.
+JSON output lists per-rule counts and asset paths, ready for a CI dashboard or a PR gate.
 
 ---
 
