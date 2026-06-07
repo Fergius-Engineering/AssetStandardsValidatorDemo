@@ -25,7 +25,7 @@ A linter tells you an asset name is wrong. ASV shows you that right inside the C
 | One fixed rule set | Configured per studio and per project |
 | A flat list of errors | Sorted by priority P0–P3 and by rule |
 | Fix by hand, one at a time | Batch auto-fix of hundreds of assets |
-| Name checks only | Custom validators in C++ or Blueprint *(full version)* |
+| Name checks only | Custom validators in C++ *(full version)* |
 | Console output | HTML project-health report for the lead |
 
 ---
@@ -272,7 +272,7 @@ For larger projects, production pipelines, and serious studio work, grab the ful
 | Report export JSON / CSV | ❌ | ✅ |
 | OnStartup trigger | ❌ | ✅ |
 | CI commandlet | ⚠️ 200 assets/run | ✅ Unlimited |
-| Custom validators (C++/BP) | ❌ | ✅ |
+| Custom validators (C++) | ❌ | ✅ |
 | Source code | ❌ | ✅ |
 | Platforms | Windows only | Windows · Linux · Mac |
 
@@ -287,7 +287,7 @@ On first scan, a dialog appears explaining the active restrictions — you'll se
 - **Report export is HTML only** — JSON and CSV export require the full version.
 - **On Editor Startup trigger is disabled** — appears in config but cannot be enabled. Use OnSave or validate manually instead.
 - **CI commandlet is limited** — `ASVCommandlet` runs in demo builds but scans the 200 most-recently-modified assets per run. Exit codes are identical to the full version.
-- **No source code** — custom validators (C++/Blueprint) require the full version.
+- **No source code** — writing your own C++ validators requires the full version.
 - **Windows only** — the full version adds Mac and Linux (built from source; details in the full version's README).
 
 ---
@@ -308,7 +308,7 @@ On first scan, a dialog appears explaining the active restrictions — you'll se
 
 [**Asset Standards Validator on Fab →**](https://www.fab.com/sellers/Fergius%20Engineering)
 
-Full version includes unlimited scanning, CI integration, source code, and the ability to write custom validators in C++ or Blueprint.
+Full version includes unlimited scanning, CI integration, source code, and the ability to write your own validators in C++. Validators are C++ only — Blueprint authoring is not supported.
 
 > **Before installing the full version:** remove the demo plugin first. Both versions share the same module name and will conflict if installed together. Delete or rename the `AssetStandardsValidator` folder in your engine's `Plugins/Marketplace/` directory, then restart the editor before installing the full version.
 
