@@ -60,7 +60,7 @@ The panel gives you the full sortable list, batch fixes, and reports. The Conten
 
 ## What it checks
 
-Six validator categories, all configurable. Most rules are off by default on first run — they're noisy on legacy projects. Enable progressively as your team's standards solidify.
+Six validator categories, all configurable — and all of them, with every rule, work in the demo. The only validator the demo can't run is one you write yourself (C++, full version). Most rules are off by default on first run — they're noisy on legacy projects. Enable progressively as your team's standards solidify.
 
 | Category | Checks | Auto-fix |
 |----------|--------|----------|
