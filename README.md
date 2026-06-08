@@ -171,12 +171,13 @@ Three triggers are **on by default** with the auto-created config:
 | **OnAssetCreated** | Validates a new asset the moment it's created |
 | **OnAssetRenamed** | Re-validates an asset after rename |
 
-Two more triggers are available and **off by default** (opt-in in the config DataAsset):
+More triggers are available and **off by default** (opt-in in the config DataAsset):
 
 | Trigger | When it fires |
 |---------|--------------|
 | **OnStartup** | Full scan of all assets when the editor opens |
-| **OnPIE** | Validates open assets before Play In Editor starts |
+| **OnPIE** | Validates open assets when Play In Editor starts |
+| **PreBeginPIE** | Fires just before Play starts, while the editor world is still whole — use this for level/world checks |
 
 Overlay badges in the Content Browser update as violations are detected — no panel required.
 
@@ -265,12 +266,10 @@ For larger projects, production pipelines, and serious studio work, grab the ful
 | Auto-fix (single asset) | ✅ | ✅ |
 | Report export HTML | ✅ | ✅ |
 | In-editor docs | ✅ | ✅ |
-| OnSave / OnAssetCreated / OnAssetRenamed triggers | ✅ | ✅ |
-| OnPIE trigger | ✅ | ✅ |
+| All triggers | ✅ | ✅ |
 | Batch fix | ⚠️ 5 uses/session | ✅ Unlimited |
 | Batch scan | ⚠️ 200 assets/run | ✅ Unlimited |
 | Report export JSON / CSV | ❌ | ✅ |
-| OnStartup trigger | ❌ | ✅ |
 | CI commandlet | ⚠️ 200 assets/run | ✅ Unlimited |
 | Custom validators (C++) | ❌ | ✅ |
 | Source code | ❌ | ✅ |
@@ -285,7 +284,6 @@ On first scan, a dialog appears explaining the active restrictions — you'll se
 - **Scans up to 200 assets per run** — the most recently modified assets in scope. A pre-scan toast tells you when the cap is applied. Single-asset validation (right-click → Validate) has no cap.
 - **Auto-fix is limited to 5 uses per editor session** — both single-asset and batch fixes count. Resets on editor restart.
 - **Report export is HTML only** — JSON and CSV export require the full version.
-- **On Editor Startup trigger is disabled** — appears in config but cannot be enabled. Use OnSave or validate manually instead.
 - **CI commandlet is limited** — `ASVCommandlet` runs in demo builds but scans the 200 most-recently-modified assets per run. Exit codes are identical to the full version.
 - **No source code** — writing your own C++ validators requires the full version.
 - **Windows only** — the full version adds Mac and Linux (built from source; details in the full version's README).
