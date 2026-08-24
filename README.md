@@ -8,7 +8,7 @@ Free, no time limit. The demo scans 200 assets per run and allows 5 auto-fixes p
 
 [![Download Demo](https://img.shields.io/badge/Download%20Demo-Releases-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases)
 [![Get Full on Fab](https://img.shields.io/badge/Get%20Full%20on-Fab-1a73e8?style=for-the-badge)](https://www.fab.com/sellers/Fergius%20Engineering)
-[![UE 5.0-5.7](https://img.shields.io/badge/UE-5.0%E2%80%935.7-313131?style=for-the-badge&logo=unrealengine&logoColor=white)](#install)
+[![UE 5.0-5.8](https://img.shields.io/badge/UE-5.0--5.8-313131?style=for-the-badge&logo=unrealengine&logoColor=white)](#install)
 
 Downloads are on the [Releases](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) page: take `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version. Install steps are [at the bottom](#install).
 
@@ -274,7 +274,7 @@ Export is HTML only. JSON and CSV need the full version, and so does writing you
 3. Copy that folder into `UE_5.x/Engine/Plugins/Marketplace/`
 4. Open your project, go to **Edit → Plugins**, find **Asset Standards Validator**, tick it and restart the editor
 
-Builds exist for UE 5.0 through 5.7. Editor-only plugin, so it is not part of a packaged build.
+Builds exist for UE 5.0 through 5.8. Editor-only plugin, so it is not part of a packaged build.
 
 ---
 
