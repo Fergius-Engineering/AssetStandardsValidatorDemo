@@ -1,66 +1,55 @@
-# Asset Standards Validator — Demo
+# Asset Standards Validator (Demo)
 
-**More than a linter — a standards layer for your whole UE5 project.**
+Checks UE5 assets against rules for naming, folder placement, texture settings, Blueprint variables, mesh setup and stale redirectors. What fails is marked in the Content Browser: on the asset, on the folder that holds it, and as a filter in the normal filter menu.
 
-A linter tells you an asset name is wrong. ASV shows you that right inside the Content Browser, sorts it by priority, fixes it in bulk, and hands your lead a report on how clean the project is. Configured per studio, enforced everywhere.
+Fixes run in bulk. Pick a rule, look through the list of assets and proposed names, apply. After a scan the result exports to an HTML report.
+
+Free, no time limit. The demo scans 200 assets per run and allows 5 auto-fixes per editor session. Everything else is the full plugin.
 
 [![Download Demo](https://img.shields.io/badge/Download%20Demo-Releases-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases)
 [![Get Full on Fab](https://img.shields.io/badge/Get%20Full%20on-Fab-1a73e8?style=for-the-badge)](https://www.fab.com/sellers/Fergius%20Engineering)
-[![UE 5.0–5.7](https://img.shields.io/badge/UE-5.0%E2%80%935.7-313131?style=for-the-badge&logo=unrealengine&logoColor=white)](#install)
+[![UE 5.0-5.7](https://img.shields.io/badge/UE-5.0%E2%80%935.7-313131?style=for-the-badge&logo=unrealengine&logoColor=white)](#install)
 
-> **⬇ Where to download:** open the [**Releases**](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) page and grab `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version. Full install steps are [below](#install).
+Downloads are on the [Releases](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) page: take `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version. Install steps are [at the bottom](#install).
 
-![Content Browser with violation badges on folders and assets, and a hover tooltip listing an asset's violations by severity](docs/screenshots/asv-asset-overlay.png)
-
-- **Fixes in bulk, not just flags** — auto-fix hundreds of assets in one pass, with a per-row review before anything is applied.
-- **Lives in your Content Browser** — violation badges and filters right where you work, not in a separate console.
-- **Hands your lead a project-health report** — exportable HTML audit with a health score and top issues.
-
----
-
-## More than a linter
-
-| Ordinary linter | Asset Standards Validator |
-|-----------------|---------------------------|
-| One fixed rule set | Configured per studio and per project |
-| A flat list of errors | Sorted by priority P0–P3 and by rule |
-| Fix by hand, one at a time | Batch auto-fix of hundreds of assets |
-| Name checks only | Custom validators in C++ *(full version)* |
-| Console output | HTML project-health report for the lead |
-
----
-
-## Two ways to work: panel or Content Browser
-
-You don't have to live in the ASV panel. Every violation is visible — and fixable — right in the Content Browser.
-
-- **Badges on assets and folders** — a marker appears on any asset that fails a check, and on every folder that contains one. Hover an asset to see the exact violations and their severity.
-- **Native filter dropdown** — open the Content Browser filter menu and you'll find an **Asset Standards Validator** section: filter by severity (P0–P3), by "Has Any Error", or by a specific rule. Narrow thousands of assets down to just the broken ones in two clicks.
-- **Right-click → Validate / Fix** — validate or auto-fix a single asset, or a whole folder, straight from the context menu.
-
-The panel gives you the full sortable list, batch fixes, and reports. The Content Browser gives you the same violations inline, while you work. Use whichever fits the moment.
-
-![Content Browser filter dropdown — the Asset Standards Validator section, filter by severity or by a specific rule](docs/screenshots/asv-cb-filter-rule.png)
-
-![The Standards Validator panel — full sortable violation list, batch fixes, and reports](docs/screenshots/asv-panel-full.png)
+![Content Browser with badges on assets and folders, and a tooltip listing what one asset failed](docs/screenshots/asv-asset-overlay.png)
 
 ---
 
 ## Quick start
 
-1. Open the plugin panel: **Tools → Asset Standards Validator → Open ASV Panel**
-2. Click **Run Full Audit** in the toolbar
-3. Wait for scan to finish — results appear in the panel
-4. Click any result to select the asset in the Content Browser
-5. Click **Auto-fix** on a result (or right-click → Fix) to apply the fix
+1. Open the **Tools** menu and click **Run Full Audit**
+2. Wait for the scan. The panel opens on its own with the results in it.
+3. Click **Navigate →** on a row to select that asset in the Content Browser
+4. Click **Fix** on the row to apply the fix
 
-![Context menu — validate or fix a single asset from the Content Browser](docs/screenshots/asv-context-menu-asset.png)
+The panel is also reachable on its own, from **Tools → Open Standards Validator** or the **Standards Validator** button in the Level Editor toolbar. Its scan button is **Validate All**.
+
+Nothing to set up first. The plugin writes its config on first run and starts with a conservative rule set.
+
+---
+
+## In the Content Browser
+
+You don't have to keep the panel open. An asset that fails a check gets a marker on its icon, and so does every folder above it, so you can see which part of the project is dirty without opening anything. Hover an asset and the tooltip lists what it failed and how bad it is.
+
+The normal filter menu gets an **Asset Standards Validator** section. Filter by severity P0 to P3, by "Has Any Error", or by one specific rule. Two clicks and thousands of assets are down to the broken ones.
+
+Right-click an asset for **Validate Now** and **Fix Issues**. On a folder the same menu has **Validate Folder**.
+
+![The Asset Standards Validator section in the Content Browser filter menu](docs/screenshots/asv-cb-filter-rule.png)
+
+![The Standards Validator panel with the sortable list of results](docs/screenshots/asv-panel-full.png)
+
+The panel is still where the full sortable list, the batch fixes and the reports live.
+
+![Right-click menu on an asset with Validate and Fix](docs/screenshots/asv-context-menu-asset.png)
 
 ---
 
 ## What it checks
 
-Six validator categories, all configurable — and all of them, with every rule, work in the demo. The only validator the demo can't run is one you write yourself (C++, full version). Most rules are off by default on first run — they're noisy on legacy projects. Enable progressively as your team's standards solidify.
+Six categories. Every rule works in the demo. Most of them ship switched off, because on a legacy project they return thousands of results on the first scan and nobody reads that. Turn them on as your standards settle.
 
 | Category | Checks | Auto-fix |
 |----------|--------|----------|
@@ -103,7 +92,7 @@ Auto-fix: `wrong_folder` (moves asset to the correct folder).
 
 ### Texture
 
-Reads from asset metadata — no full load required.
+Reads asset metadata, so the texture is not loaded in full.
 
 | Rule ID | What it checks | On by default |
 |---------|---------------|:-------------:|
@@ -113,7 +102,7 @@ Reads from asset metadata — no full load required.
 | `texture_wrong_compression` | Compression matches texture type | ❌ |
 | `texture_wrong_group` | LOD group matches texture suffix | ❌ |
 
-Detection is based on name suffix: `_D` → color (sRGB on), `_N` → normal (sRGB off), etc.
+Texture type comes from the name suffix. `_D` is colour, so sRGB stays on. `_N` is a normal map, so sRGB goes off.
 
 Auto-fix: `texture_wrong_srgb`, `texture_wrong_compression`, `texture_wrong_group`.
 
@@ -159,57 +148,57 @@ Auto-fix: consolidates the redirector.
 
 ---
 
-## Validation triggers
+## When it runs
 
-ASV validates in the background — you don't have to remember to run scans manually.
+On first run the plugin creates a config asset at `Content/Data/DA_ASV_AllarStyleGuide`. Four of its triggers are on:
 
-Three triggers are **on by default** with the auto-created config:
+| Trigger | Fires when |
+|---------|-----------|
+| OnSave | an asset is saved |
+| OnAssetCreated | a new asset appears |
+| OnAssetRenamed | an asset is renamed |
+| Manual | you press Run Full Audit, or use the right-click menu |
 
-| Trigger | When it fires |
-|---------|--------------|
-| **OnSave** | Validates assets as they're saved |
-| **OnAssetCreated** | Validates a new asset the moment it's created |
-| **OnAssetRenamed** | Re-validates an asset after rename |
+Two more sit in the same config switched off, because each one starts a full scan:
 
-More triggers are available and **off by default** (opt-in in the config DataAsset):
+| Trigger | Fires when |
+|---------|-----------|
+| OnStartup | the editor opens |
+| OnPIE | Play In Editor starts |
 
-| Trigger | When it fires |
-|---------|--------------|
-| **OnStartup** | Full scan of all assets when the editor opens |
-| **OnPIE** | Validates open assets when Play In Editor starts |
-| **PreBeginPIE** | Fires just before Play starts, while the editor world is still whole — use this for level/world checks |
+`PreBeginPIE` is not in the default config at all. Add it if you need level checks. It fires just before Play starts, while the editor world is still whole.
 
-Overlay badges in the Content Browser update as violations are detected — no panel required.
+Badges update as results come in. The panel does not have to be open for any of this.
 
-![Content Browser folder — right-click to validate the full folder](docs/screenshots/asv-context-menu-folder.png)
+![Right-click menu on a folder in the Content Browser](docs/screenshots/asv-context-menu-folder.png)
 
 ---
 
 ## Batch Fix
 
-Fix a whole rule at once instead of clicking each asset.
+Fix a whole rule at once instead of clicking through rows. Narrow the panel to one rule with the **Rule** filter, then press **Fix All**. The button turns on once two or more fixable results are showing.
 
-Narrow the panel to one rule with the **Rule** filter, then click **Fix All** (it activates once two or more fixable results are showing). A dialog lists every affected asset, grouped by folder, with its current and proposed name. Edit a proposed name inline, uncheck anything you want to skip, and apply. Conflicts — two assets that would collide, or a target path already taken — are flagged before anything runs. Progress shows per row, and the panel refreshes when it's done.
+A dialog opens with every affected asset, grouped by folder, current name next to proposed name. Edit a proposed name in place, or uncheck a row to skip it. Collisions are caught before anything runs: two assets that would end up with the same name, or a target path that is already taken. Progress shows per row and the panel refreshes at the end.
 
-![Batch Fix dialog — review assets, edit proposed names, apply fixes in bulk](docs/screenshots/asv-batch-fix-dialog.png)
+![The Batch Fix dialog with assets, current names and proposed names](docs/screenshots/asv-batch-fix-dialog.png)
 
-> Demo: 5 auto-fixes per editor session, single or batch. Resets on restart.
-
----
-
-## Audit Report
-
-Export a full report after any scan: **Export Report → HTML** (demo) or **HTML / JSON / CSV** (full version).
-
-The HTML report opens in your browser — health score, top violations by impact, breakdown by folder and rule.
-
-![HTML audit report — health score, violations by rule and folder](docs/screenshots/asv-html-report.png)
+The demo allows 5 auto-fixes per editor session. A batch run spends one of them however many assets it covers, so filtering to a whole rule and fixing it in one go is the cheap way to use them. Restarting the editor resets the count.
 
 ---
 
-## CI Integration
+## Audit report
 
-Run validation from the command line, in demo and full versions alike. The demo scans the 200 most-recently-modified assets per run; exit codes are the same in both.
+Press **Export Report** in the panel toolbar and pick a location. The file type dropdown in that dialog has HTML, JSON and CSV, and the demo writes HTML only.
+
+The HTML file opens in a browser. It has a health score, the violations that cost the most, and a breakdown per folder and per rule. This is the thing to send a lead who is never going to install the plugin.
+
+![The HTML audit report with health score and violations by rule](docs/screenshots/asv-html-report.png)
+
+---
+
+## Command line
+
+The commandlet runs in both versions. In the demo it takes the 200 most recently modified assets per run. Exit codes are identical.
 
 ```
 UnrealEditor-Cmd.exe MyProject.uproject -run=ASVCommandlet \
@@ -219,41 +208,43 @@ UnrealEditor-Cmd.exe MyProject.uproject -run=ASVCommandlet \
   -output=./reports/
 ```
 
-- **Exit codes:** `0` clean, `1` violations found, `2` report write error.
-- **Severity:** `-severity P0` (default) fails on critical only; `P1` includes warnings. P0–P3 available.
-- **Scope:** `-Root` takes comma-separated content paths; `-MaxAssets` caps the scan.
+Exit code 0 means clean, 1 means something failed a rule, 2 means the report could not be written. `-severity=P0` is the default and fails on critical only, `-severity=P1` counts warnings as well, and P0 to P3 are all accepted. `-Root` takes comma-separated content paths. `-MaxAssets` caps the scan.
 
-JSON output lists per-rule counts and asset paths, ready for a CI dashboard or a PR gate.
+The JSON output has per-rule counts and asset paths, which is enough to feed a CI dashboard or a PR gate.
 
 ---
 
 ## Configuration
 
-On first run the plugin creates a config DataAsset automatically: **`Content/Data/DA_ASV_AllarStyleGuide`**. Open it to enable or adjust checks — no setup required to get started.
+The config DataAsset is created for you on first run: **`Content/Data/DA_ASV_AllarStyleGuide`**. Open it to switch checks on and off.
 
-**Project Settings → Plugins → Asset Standards Validator** — global settings: scan roots, exclude paths, logging.
+![The checker config DataAsset with its validators, triggers and path filters](docs/screenshots/asv-checker-config.png)
 
-![Checker config DataAsset — validators, triggers, and path filters](docs/screenshots/asv-checker-config.png)
+Global settings live in **Project Settings → Plugins → Asset Standards Validator**: scan roots, excluded paths, logging.
 
-**Custom class prefixes** — for project-specific asset types (e.g. `GA_` for Gameplay Abilities): open the DataAsset, expand **ASVValidator_NamingConvention → Class Rules**, add an entry with the parent class and prefix. Blueprint subclasses match automatically.
+For project-specific asset types, say `GA_` for Gameplay Abilities, open the DataAsset, expand **ASVValidator_NamingConvention → Class Rules** and add an entry with the parent class and the prefix. Blueprint subclasses of that class match on their own.
 
-Full configuration reference is in the [in-editor documentation](#in-editor-documentation).
+The full option reference is in the in-editor docs.
 
 ---
 
 ## In-editor documentation
 
-Full reference is available inside the editor: **Tools → Asset Standards Validator → Documentation**. Works offline, searchable, covers all validators, auto-fix, configuration, and reports.
+**Tools → Help → Documentation**. Works offline, has search, covers every validator, auto-fix, configuration and reports.
 
-![In-editor documentation — searchable reference, works offline](docs/screenshots/asv-docs-tab.png)
+![The documentation tab open inside the editor](docs/screenshots/asv-docs-tab.png)
 
 ---
 
-## Is the demo enough?
+## Demo limits
 
-If the limits work for you — use it free, no time limit. Good luck keeping your project clean.
+The first scan of each editor session opens a dialog listing these.
 
-For larger projects, production pipelines, and serious studio work, grab the full version.
+Scans stop at 200 assets per run and take the most recently modified ones in scope. A toast tells you when the cap was applied. **Validate Now** on a single asset is not capped.
+
+Auto-fix is limited to 5 uses per editor session. A single fix spends one; so does a whole batch run, whatever its size. Restarting the editor resets the count.
+
+Export is HTML only. JSON and CSV need the full version, and so does writing your own validator in C++, since the demo ships without source. Demo builds are Windows only.
 
 ---
 
@@ -276,46 +267,29 @@ For larger projects, production pipelines, and serious studio work, grab the ful
 | Platforms | Windows only | Windows · Linux · Mac |
 
 ---
-
-## Demo limitations
-
-On first scan, a dialog appears explaining the active restrictions — you'll see it once per editor session.
-
-- **Scans up to 200 assets per run** — the most recently modified assets in scope. A pre-scan toast tells you when the cap is applied. Single-asset validation (right-click → Validate) has no cap.
-- **Auto-fix is limited to 5 uses per editor session** — both single-asset and batch fixes count. Resets on editor restart.
-- **Report export is HTML only** — JSON and CSV export require the full version.
-- **CI commandlet is limited** — `ASVCommandlet` runs in demo builds but scans the 200 most-recently-modified assets per run. Exit codes are identical to the full version.
-- **No source code** — writing your own C++ validators requires the full version.
-- **Windows only** — the full version adds Mac and Linux (built from source; details in the full version's README).
-
----
-
 ## Install
 
-1. Go to [**Releases**](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) and download the zip for your UE version: `AssetStandardsValidator_Demo_{ue}_{ver}.zip`
-2. Extract the zip — you'll get an `AssetStandardsValidator` folder
-3. Copy it to `UE_5.x/Engine/Plugins/Marketplace/AssetStandardsValidator/`
-4. Open your project, go to **Edit → Plugins**, search for **Asset Standards Validator**, enable it, and restart the editor
+1. Open [Releases](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) and download `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version
+2. Unzip it. You get a folder called `AssetStandardsValidator`.
+3. Copy that folder into `UE_5.x/Engine/Plugins/Marketplace/`
+4. Open your project, go to **Edit → Plugins**, find **Asset Standards Validator**, tick it and restart the editor
 
-> **UE versions:** 5.0 · 5.1 · 5.2 · 5.3 · 5.4 · 5.5 · 5.6 · 5.7  
-> **Editor-only plugin.** Not included in packaged builds.
+Builds exist for UE 5.0 through 5.7. Editor-only plugin, so it is not part of a packaged build.
 
 ---
 
-## Get full version
+## Full version
 
-[**Asset Standards Validator on Fab →**](https://www.fab.com/sellers/Fergius%20Engineering)
+[Asset Standards Validator on Fab](https://www.fab.com/sellers/Fergius%20Engineering)
 
-Full version includes unlimited scanning, CI integration, source code, and the ability to write your own validators in C++. Validators are C++ only — Blueprint authoring is not supported.
+Unlimited scanning and fixing, JSON and CSV export, source code, and your own validators in C++. Validators are C++ only, there is no Blueprint authoring.
 
-> **Before installing the full version:** remove the demo plugin first. Both versions share the same module name and will conflict if installed together. Delete or rename the `AssetStandardsValidator` folder in your engine's `Plugins/Marketplace/` directory, then restart the editor before installing the full version.
+Remove the demo before installing it. Both builds use the same module name and the editor will not load two of them. Delete or rename the `AssetStandardsValidator` folder in `Plugins/Marketplace/`, restart, then install.
 
 ---
 
 ## Bugs and questions
 
-[Open an issue →](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/issues)
+[Open an issue](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/issues) and include your UE version and what happened.
 
-Please include your UE version and a brief description of what happened.
-
-Prefer to chat? Join the community on [**Discord**](https://discord.gg/Zc7Y7nYrvz) for help, questions, and updates.
+There is a [Discord](https://discord.gg/Zc7Y7nYrvz) too, if you would rather ask there.
