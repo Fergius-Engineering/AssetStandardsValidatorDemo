@@ -1,16 +1,16 @@
-# Asset Standards Validator (Demo)
+# Asset Standards Validator
 
 Checks UE5 assets against rules for naming, folder placement, texture settings, Blueprint variables, mesh setup and stale redirectors. What fails is marked in the Content Browser: on the asset, on the folder that holds it, and as a filter in the normal filter menu.
 
 Fixes run in bulk. Pick a rule, look through the list of assets and proposed names, apply. After a scan the result exports to an HTML report.
 
-Free, no time limit. The demo scans 200 assets per run and allows 5 auto-fixes per editor session. Everything else is the full plugin.
+Free, no limits and no time limit. Scan a project of any size, fix as much as you want, export the report. What a person does in the editor is free; what runs without a person, the command line for CI and machine readable export, is in the full version.
 
-[![Download Demo](https://img.shields.io/badge/Download%20Demo-Releases-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases)
+[![Download](https://img.shields.io/badge/Download-Releases-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Fergius-Engineering/AssetStandardsValidatorFree/releases)
 [![Get Full on Fab](https://img.shields.io/badge/Get%20Full%20on-Fab-1a73e8?style=for-the-badge)](https://www.fab.com/sellers/Fergius%20Engineering)
 [![UE 5.0-5.8](https://img.shields.io/badge/UE-5.0--5.8-313131?style=for-the-badge&logo=unrealengine&logoColor=white)](#install)
 
-Downloads are on the [Releases](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) page: take `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version. Install steps are [at the bottom](#install).
+Downloads are on the [Releases](https://github.com/Fergius-Engineering/AssetStandardsValidatorFree/releases) page: take `AssetStandardsValidator_Free_{ue}_{ver}.zip` for your UE version. Install steps are [at the bottom](#install).
 
 ![Content Browser with badges on assets and folders, and a tooltip listing what one asset failed](docs/screenshots/asv-asset-overlay.png)
 
@@ -49,7 +49,7 @@ The panel is still where the full sortable list, the batch fixes and the reports
 
 ## What it checks
 
-Six categories. Every rule works in the demo. Most of them ship switched off, because on a legacy project they return thousands of results on the first scan and nobody reads that. Turn them on as your standards settle.
+Six categories. Every rule works here. Most of them ship switched off, because on a legacy project they return thousands of results on the first scan and nobody reads that. Turn them on as your standards settle.
 
 | Category | Checks | Auto-fix |
 |----------|--------|----------|
@@ -182,13 +182,11 @@ A dialog opens with every affected asset, grouped by folder, current name next t
 
 ![The Batch Fix dialog with assets, current names and proposed names](docs/screenshots/asv-batch-fix-dialog.png)
 
-The demo allows 5 auto-fixes per editor session. A batch run spends one of them however many assets it covers, so filtering to a whole rule and fixing it in one go is the cheap way to use them. Restarting the editor resets the count.
-
 ---
 
 ## Audit report
 
-Press **Export Report** in the panel toolbar and pick a location. The file type dropdown in that dialog has HTML, JSON and CSV, and the demo writes HTML only.
+Press **Export Report** in the panel toolbar and pick a location. HTML is the free format. JSON and CSV, the ones a dashboard reads, are in the full version.
 
 The HTML file opens in a browser. It has a health score, the violations that cost the most, and a breakdown per folder and per rule. This is the thing to send a lead who is never going to install the plugin.
 
@@ -198,7 +196,7 @@ The HTML file opens in a browser. It has a health score, the violations that cos
 
 ## Command line
 
-The commandlet runs in both versions. In the demo it takes the 200 most recently modified assets per run. Exit codes are identical.
+The commandlet is a full version feature. It runs the same validation with the editor closed, so a dirty branch can fail a build. In the free version the command prints one line saying so and exits with code 3.
 
 ```
 UnrealEditor-Cmd.exe MyProject.uproject -run=ASVCommandlet \
@@ -236,40 +234,29 @@ The full option reference is in the in-editor docs.
 
 ---
 
-## Demo limits
+## Free vs Full
 
-The first scan of each editor session opens a dialog listing these.
+Everything a person does in the editor is free, with no caps. The full version adds the parts that run without a person, and the source.
 
-Scans stop at 200 assets per run and take the most recently modified ones in scope. A toast tells you when the cap was applied. **Validate Now** on a single asset is not capped.
-
-Auto-fix is limited to 5 uses per editor session. A single fix spends one; so does a whole batch run, whatever its size. Restarting the editor resets the count.
-
-Export is HTML only. JSON and CSV need the full version, and so does writing your own validator in C++, since the demo ships without source. Demo builds are Windows only.
-
----
-
-## Demo vs Full
-
-| Feature | Demo | Full |
+| Feature | Free | Full |
 |---------|------|------|
-| All validators | ✅ | ✅ |
+| All validators and rules | ✅ | ✅ |
+| All triggers | ✅ | ✅ |
 | Content Browser badges + filters | ✅ | ✅ |
-| Auto-fix (single asset) | ✅ | ✅ |
+| Scan size | ✅ No limit | ✅ No limit |
+| Auto-fix, single and batch | ✅ No limit | ✅ No limit |
 | Report export HTML | ✅ | ✅ |
 | In-editor docs | ✅ | ✅ |
-| All triggers | ✅ | ✅ |
-| Batch fix | ⚠️ 5 uses/session | ✅ Unlimited |
-| Batch scan | ⚠️ 200 assets/run | ✅ Unlimited |
+| Command line for CI | ❌ | ✅ |
 | Report export JSON / CSV | ❌ | ✅ |
-| CI commandlet | ⚠️ 200 assets/run | ✅ Unlimited |
 | Custom validators (C++) | ❌ | ✅ |
 | Source code | ❌ | ✅ |
-| Platforms | Windows only | Windows · Linux · Mac |
+| Platforms | Windows | Windows · Linux · Mac |
 
 ---
 ## Install
 
-1. Open [Releases](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/releases) and download `AssetStandardsValidator_Demo_{ue}_{ver}.zip` for your UE version
+1. Open [Releases](https://github.com/Fergius-Engineering/AssetStandardsValidatorFree/releases) and download `AssetStandardsValidator_Free_{ue}_{ver}.zip` for your UE version
 2. Unzip it. You get a folder called `AssetStandardsValidator`.
 3. Copy that folder into `UE_5.x/Engine/Plugins/Marketplace/`
 4. Open your project, go to **Edit → Plugins**, find **Asset Standards Validator**, tick it and restart the editor
@@ -284,12 +271,12 @@ Builds exist for UE 5.0 through 5.8. Editor-only plugin, so it is not part of a 
 
 Unlimited scanning and fixing, JSON and CSV export, source code, and your own validators in C++. Validators are C++ only, there is no Blueprint authoring.
 
-Remove the demo before installing it. Both builds use the same module name and the editor will not load two of them. Delete or rename the `AssetStandardsValidator` folder in `Plugins/Marketplace/`, restart, then install.
+Remove the free build before installing it. Both builds use the same module name and the editor will not load two of them. Delete or rename the `AssetStandardsValidator` folder in `Plugins/Marketplace/`, restart, then install.
 
 ---
 
 ## Bugs and questions
 
-[Open an issue](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo/issues) and include your UE version and what happened.
+[Open an issue](https://github.com/Fergius-Engineering/AssetStandardsValidatorFree/issues) and include your UE version and what happened.
 
 There is a [Discord](https://discord.gg/Zc7Y7nYrvz) too, if you would rather ask there.

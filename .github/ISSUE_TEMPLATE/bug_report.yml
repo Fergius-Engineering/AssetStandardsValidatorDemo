@@ -1,5 +1,5 @@
 name: 🐛 Bug report
-description: Something in the demo is broken or behaves unexpectedly
+description: Something is broken or behaves unexpectedly
 labels: [bug, triage]
 body:
   - type: markdown
@@ -8,17 +8,16 @@ body:
         Thanks for reporting. The more detail you give, the faster it gets fixed.
         Logs, screenshots and video are all optional — share whatever is easy for you.
 
-        **Before you file:** some things are intentional demo limits, not bugs —
-        the 200-asset scan cap (panel and CI commandlet), 5 auto-fixes per session,
-        HTML-only export, Windows-only, and no source code. See
-        [Demo limitations](https://github.com/Fergius-Engineering/AssetStandardsValidatorDemo#demo-limitations).
+        **Before you file:** a few things are missing from the free version on purpose, not bugs —
+        the command line runner for CI, JSON and CSV export, the source code, and Mac and Linux builds.
+        See [Free vs Full](https://github.com/Fergius-Engineering/AssetStandardsValidatorFree#free-vs-full).
 
   - type: dropdown
     id: edition
     attributes:
       label: Which version are you using?
       options:
-        - "Demo"
+        - "Free"
         - "Full version"
     validations:
       required: true
@@ -43,7 +42,7 @@ body:
     id: plugin-version
     attributes:
       label: Plugin version
-      description: Open the plugin's `AssetStandardsValidator.uplugin` file and copy the `VersionName` value (e.g. 0.4.0). It also appears in the demo zip name.
+      description: Open the plugin's `AssetStandardsValidator.uplugin` file and copy the `VersionName` value (e.g. 0.4.0). It also appears in the zip name.
       placeholder: "0.4.0"
     validations:
       required: true
