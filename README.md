@@ -111,7 +111,7 @@ Auto-fix: `texture_wrong_srgb`, `texture_wrong_compression`, `texture_wrong_grou
 | Rule ID | What it checks | On by default |
 |---------|---------------|:-------------:|
 | `bp_bool_no_prefix` | Boolean variables start with `b` | ❌ |
-| `bp_bool_is_pattern` | Avoid `bIsDead` — prefer `bDead` | ❌ |
+| `bp_bool_is_pattern` | Avoid `bIsDead`, prefer `bDead` | ❌ |
 | `bp_var_not_pascal_case` | Variable uses PascalCase | ❌ |
 | `bp_var_atomic_type_name` | Name does not include type (`Score` not `ScoreInt`) | ❌ |
 | `bp_editable_missing_tooltip` | Editable variables have tooltip text | ❌ |
@@ -269,7 +269,7 @@ Builds exist for UE 5.0 through 5.8. Editor-only plugin, so it is not part of a 
 
 [Asset Standards Validator on Fab](https://www.fab.com/sellers/Fergius%20Engineering)
 
-Unlimited scanning and fixing, JSON and CSV export, source code, and your own validators in C++. Validators are C++ only, there is no Blueprint authoring.
+The command line runner for CI, JSON and CSV export, the full source, and your own validators in C++. Validators are C++ only, there is no Blueprint authoring. Scanning and fixing are already unlimited in the free build, that is not what you are paying for.
 
 Remove the free build before installing it. Both builds use the same module name and the editor will not load two of them. Delete or rename the `AssetStandardsValidator` folder in `Plugins/Marketplace/`, restart, then install.
 
